@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="appGt">
+  <meta name="keywords" content="">
+  
+  <title>【翻译】CSS变量:你为什么需要关注? - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"appgt.github.io","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【翻译】CSS变量:你为什么需要关注?">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-24 18:05" pubdate>
+        2021年6月24日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【翻译】CSS变量:你为什么需要关注?</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>原文 <a target="_blank" rel="noopener" href="https://developers.google.com/web/updates/2016/02/css-variables-why-should-you-care">CSS Variables: Why Should You Care?</a></p>
+</blockquote>
+<p>&emsp;&emsp;CSS 变量，更准确地称为 CSS 自定义属性，将登陆 Chrome 49。它们可用于减少 CSS 中的重复，以及强大的运行时效果，如主题切换和潜在的扩展/填充未来的 CSS 功能。</p>
+<h2 id="杂乱的-CSS"><a href="#杂乱的-CSS" class="headerlink" title="杂乱的 CSS"></a>杂乱的 CSS</h2><p>&emsp;&emsp;在设计应用程序时，通常的做法是留出一组品牌颜色，这些颜色将被重复使用以保持应用程序的外观一致。不幸的是，在 CSS 中一遍又一遍地重复这些颜色值不仅是一件苦差事，而且容易出错。如果在某个时候需要更改其中一种颜色，您当然可以进行全局“查找并替换”所有值，但在足够大的项目中，这很容易出错。</p>
+<p>&emsp;&emsp;最近，许多开发人员转向了像 SASS 或 LESS 这样的 CSS 预处理器，它们通过使用预处理器变量来解决这个问题。虽然这些工具极大地提高了开发人员的生产力，但它们使用的变量存在一个主要缺点，即它们是静态的，不能在运行时更改。添加在运行时更改变量的功能不仅为动态应用程序主题等打开了大门，而且对响应式设计和polyfill未来CSS功能的潜力也有重大影响。随着 Chrome 49 的发布，这些功能现在以 CSS 自定义属性的形式提供。</p>
+<h2 id="自定义CSS属性的简单使用"><a href="#自定义CSS属性的简单使用" class="headerlink" title="自定义CSS属性的简单使用"></a>自定义CSS属性的简单使用</h2><p>自定义属性为我们的 CSS 工具箱添加了两个新功能：</p>
+<ul>
+<li>作者为具有作者选择名称的属性分配任意值的能力。</li>
+<li><code>var()</code> 函数，它允许作者在其他属性中使用这些值。</li>
+</ul>
+<p>例子:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:root</span> &#123;<br>  --<span class="hljs-selector-tag">main</span>-<span class="hljs-attribute">color</span>: <span class="hljs-number">#06c</span>;<br>&#125;<br><br><span class="hljs-selector-id">#foo</span> <span class="hljs-selector-tag">h1</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--main-color);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>--main-color</code> 是用户定义的一个值为<code>#06c</code>的自定义属性。<br>注意所有的自定义属性都以双横杠<code>--</code>开头。</p>
+<p><code>var()</code> 函数检索并用自定义属性值替换自身，从而产生颜色:#06c;只要自定义属性在样式表中的某处定义，它就应该可用于 var 函数。<br>语法起初可能看起来有点奇怪。许多开发人员问，“为什么不使用 <code>$foo</code> 作为变量名？”该方法被专门选择为尽可能灵活，并可能在未来允许 $foo 宏。对于背景故事，您可以从规范作者之一 Tab Atkins 那里阅读这篇<a target="_blank" rel="noopener" href="https://www.xanthir.com/blog/b4KT0">文章</a>。</p>
+<h2 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h2><p>自定义属性遵循标准级联规则，因此您可以在不同的特异性级别定义相同的属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:root</span> &#123; --<span class="hljs-attribute">color</span>: blue; &#125;<br><span class="hljs-selector-tag">div</span> &#123; --<span class="hljs-attribute">color</span>: green; &#125;<br><span class="hljs-selector-id">#alert</span> &#123; --<span class="hljs-attribute">color</span>: red; &#125;<br>* &#123; <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color); &#125;<br><br>&lt;<span class="hljs-selector-tag">p</span>&gt;<span class="hljs-selector-tag">I</span> inherited blue <span class="hljs-selector-tag">from</span> the root element!&lt;/<span class="hljs-selector-tag">p</span>&gt;<br>&lt;<span class="hljs-selector-tag">div</span>&gt;<span class="hljs-selector-tag">I</span> got green set directly on me!&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>&lt;div id=&quot;alert&quot;&gt;<br>  While <span class="hljs-selector-tag">I</span> got red set directly on me!<br>  &lt;<span class="hljs-selector-tag">p</span>&gt;<span class="hljs-selector-tag">I</span>’m red too, because of inheritance!&lt;/<span class="hljs-selector-tag">p</span>&gt;<br>&lt;/<span class="hljs-selector-tag">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这意味着您可以利用媒体查询中的自定义属性来帮助响应式设计。一种用例可能是随着屏幕尺寸的增加扩大主要章节元素周围的边距：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:root</span> &#123;<br>  --gutter: <span class="hljs-number">4px</span>;<br>&#125;<br><br><span class="hljs-selector-tag">section</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-built_in">var</span>(--gutter);<br>&#125;<br><br><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>: <span class="hljs-number">600px</span>) &#123;<br>  <span class="hljs-selector-pseudo">:root</span> &#123;<br>    --gutter: <span class="hljs-number">16px</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>需要指出的是，使用现在的CSS预处理器无法定义媒体查询中的变量，上面的代码片段是不可能的。拥有这个能力可以释放很多潜能！<br>也可以拥有从其他自定义属性派生其值的自定义属性。这对于主题化非常有用：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-pseudo">:root</span> &#123;<br>  --primary-<span class="hljs-attribute">color</span>: red;<br>  --logo-text: <span class="hljs-built_in">var</span>(--primary-color);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="var-函数"><a href="#var-函数" class="headerlink" title="var()函数"></a><code>var()</code>函数</h2><p>要检索和使用自定义属性的值，您需要使用 <code>var()</code> 函数。 <code>var()</code> 函数的语法如下所示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-built_in">var</span>(--pad, <span class="hljs-number">10px</span> <span class="hljs-number">15px</span> <span class="hljs-number">20px</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>使用这些回退值，组件作者可以为其元素编写防御样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* In the component’s style: */</span><br><span class="hljs-selector-class">.component</span> <span class="hljs-selector-class">.header</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--header-color, blue);<br>&#125;<br><span class="hljs-selector-class">.component</span> <span class="hljs-selector-class">.text</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--text-color, black);<br>&#125;<br><br><span class="hljs-comment">/* In the larger application’s style: */</span><br><span class="hljs-selector-class">.component</span> &#123;<br>  --text-<span class="hljs-attribute">color</span>: <span class="hljs-number">#080</span>;<br>  <span class="hljs-comment">/* header-color isn’t set,</span><br><span class="hljs-comment">     and so remains blue,</span><br><span class="hljs-comment">     the fallback value */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这种技术对于使用 Shadow DOM 的主题化 Web Component特别有用，因为自定义属性可以遍历阴影边界。 Web Component作者可以使用回退值创建初始设计，并以自定义属性的形式公开主题“挂钩”。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- In the web component&#x27;s definition: --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">x-foo</span>&gt;</span><br>  #shadow<br>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="css">      <span class="hljs-selector-tag">p</span> &#123;</span><br><span class="css">        <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--text-background, blue);</span><br>      &#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>      This text has a yellow background because the document styled me! Otherwise it<br>      would be blue.<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">x-foo</span>&gt;</span><br><br><br><br>/* In the larger application&#x27;s style: */<br>x-foo &#123;<br>  --text-background: yellow;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>使用 <code>var()</code> 时需要注意一些问题。变量不能是属性名称。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  --side: margin-top;<br>  <span class="hljs-selector-tag">var</span>(--side): <span class="hljs-number">20px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然而，这并不等同于设置<code>margin top:20px;</code>。相反，第二个声明无效，并会作为错误抛出。</p>
+<p>同样，您不能（天真地）构建一个部分由变量提供的值：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  --gap: <span class="hljs-number">20</span>;<br>  <span class="hljs-attribute">margin-top</span>: <span class="hljs-built_in">var</span>(--gap)px;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>同样，这不等同于设置 <code>margin-top: 20px;</code>。要建立一个值，你需要<code>calc()</code> 函数。</p>
+<h2 id="使用-calc-构建值"><a href="#使用-calc-构建值" class="headerlink" title="使用 calc() 构建值"></a>使用 <code>calc()</code> 构建值</h2><p>如果您以前从未使用过它，那么<code>calc()</code>函数是一个简单的小工具，可以让您执行计算来确定CSS值。它在所有<a target="_blank" rel="noopener" href="https://caniuse.com/?search=calc">现代浏览器</a>上都受支持，并且可以与自定义属性组合以建立新的值。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.foo</span> &#123;<br>  --gap: <span class="hljs-number">20</span>;<br>  <span class="hljs-attribute">margin-top</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-built_in">var</span>(--gap) * <span class="hljs-number">1px</span>); <span class="hljs-comment">/* niiiiice */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="在Javascript中使用自定义属性"><a href="#在Javascript中使用自定义属性" class="headerlink" title="在Javascript中使用自定义属性"></a>在Javascript中使用自定义属性</h2><p>要在运行时获取自定义属性的值，请使用计算的<code>CSSStyleDeclaration</code>对象的<code>getPropertyValue()</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-comment">/* CSS */</span><br>:root &#123;<br>  --primary-color: red;<br>&#125;<br><br>p &#123;<br>  color: <span class="hljs-keyword">var</span>(--primary-color);<br>&#125;<br><br><br><br>&lt;!-- HTML --&gt;<br>&lt;p&gt;I’m a red paragraph!&lt;/p&gt;<br><br><br><br><span class="hljs-comment">/* JS */</span><br><span class="hljs-keyword">var</span> styles = getComputedStyle(<span class="hljs-built_in">document</span>.documentElement);<br><span class="hljs-keyword">var</span> value = <span class="hljs-built_in">String</span>(styles.getPropertyValue(<span class="hljs-string">&#x27;--primary-color&#x27;</span>)).trim();<br><span class="hljs-comment">// value = &#x27;red&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>类似地，要在运行时设置自定义属性的值，请使用<code>CSSStyleDeclaration</code>对象的<code>setProperty()</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* CSS */</span><br>:root &#123;<br>  --primary-color: red;<br>&#125;<br><br>p &#123;<br>  color: <span class="hljs-keyword">var</span>(--primary-color);<br>&#125;<br><br><br><br>&lt;!-- HTML --&gt;<br>&lt;p&gt;Now I’m a green paragraph!&lt;/p&gt;<br><br><br><br><span class="hljs-comment">/* JS */</span><br><span class="hljs-built_in">document</span>.documentElement.style.setProperty(<span class="hljs-string">&#x27;--primary-color&#x27;</span>, <span class="hljs-string">&#x27;green&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>因为自定义属性可以引用样式表中的其他自定义属性，所以您可以想象这将如何导致各种有趣的运行时效果。</p>
+<h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p>目前，Chrome49、Firefox42、Safari9.1和iOSSafari9.3支持自定义属性。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CSS%E5%8F%98%E9%87%8F/">CSS变量</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CSS-Variables/">CSS Variables</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/30/react-router5-%E6%BA%90%E7%A0%81/">
+                        <span class="hidden-mobile">react-router v5 源码记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
